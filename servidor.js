@@ -109,6 +109,8 @@ dividir(10, 5)
     .catch((err) => console.log('Error:', err.message))
     .finally(() => console.log('Operación terminada'));
 */
+
+
 /*
 llegada = 0
 const esperar = (ms, valor) =>
@@ -134,7 +136,7 @@ console.log(saludar()); // Promise { 'Hola' }, no el texto
 saludar().then((texto) => console.log(texto)); // Hola
 */
 
-
+/*
 
 const esperar = (ms, valor) =>
 new Promise((resolve) => setTimeout(() => resolve(valor), ms));
@@ -151,16 +153,15 @@ esperar(1000, 'Soleado'),
 esperar(2000, '5 noticias'),
 ]);
 console.log(clima, noticias);
+};
+
+
+
+*/
+
+
+async function saludar() {
+return 'Hola';
 }
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(saludar()); // Promise { 'Hola' }, no el texto
+saludar().then((texto) => console.log(texto)); // Hola

@@ -16,6 +16,10 @@ deberían ser asíncronas y explica por qué.
 2. Por estandarización en el ecosistema.
 
 # Parte 3:
-1. En el ejemplo de Promise.all, ¿por qué el tiempo total es de unos 2 segundos?
-2. ¿Qué pasa si en una cadena olvidas el return dentro de un .then()? Escribe un ejemplo y
-observa qué recibe el siguiente .then().
+1. El tiempo total es de 2 segundos porque las tareas se ejecutan de manera simultanea, en vez de sumar todos los segundos, espera a que termine la tarea mas lenta.
+2. 
+
+# Parte 4:
+1. Porque retoma Promise, no texto.
+2. 
+- Secuencia
