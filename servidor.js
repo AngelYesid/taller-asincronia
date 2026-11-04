@@ -158,10 +158,54 @@ console.log(clima, noticias);
 
 
 */
-
+/*
 
 async function saludar() {
 return 'Hola';
 }
 console.log(saludar()); // Promise { 'Hola' }, no el texto
 saludar().then((texto) => console.log(texto)); // Hola
+*/
+// datos.js — "base de datos" simulada, compartida por las tres versiones
+const empleados = [
+{ id: 1, nombre: 'Miguel' },
+{ id: 2, nombre: 'Yenny' },
+{ id: 3, nombre: 'MCamila' },
+];
+const salarios = [
+{ id: 1, salario: 1000, idempleado: 1 },
+{ id: 2, salario: 2000, idempleado: 2 },
+];
+module.exports = { empleados, salarios };
+
+
+
+const { empleados, salarios } = require('./datos');
+const obtenerEmpleado = (id, callback) => {
+setTimeout(() => {
+const empleado = empleados.find((e) => e.id === id);
+if (!empleado) {
+callback(new Error(`El empleado con id ${id} no existe`), null);
+return;
+}
+callback(null, empleado);
+}, 500);
+};
+const obtenerSalario = (empleado, callback) => {
+setTimeout(() => {
+const registro = salarios.find((s) => s.idempleado === empleado.id);
+if (!registro) {
+
+callback(new Error(`El empleado ${empleado.nombre} no tiene salario`), null);
+return;
+}
+callback(null, registro.salario);
+}, 500);
+};
+obtenerEmpleado(1, (err, empleado) => {
+if (err) return console.log(err.message);
+obtenerSalario(empleado, (err, salario) => {
+if (err) return console.log(err.message);
+console.log(`El empleado ${empleado.nombre} gana ${salario} dólares`);
+});
+});
