@@ -166,46 +166,134 @@ return 'Hola';
 console.log(saludar()); // Promise { 'Hola' }, no el texto
 saludar().then((texto) => console.log(texto)); // Hola
 */
+
+// Version 1
+
+
+
+
+
+
+
+
 // datos.js — "base de datos" simulada, compartida por las tres versiones
-const empleados = [
-{ id: 1, nombre: 'Miguel' },
-{ id: 2, nombre: 'Yenny' },
-{ id: 3, nombre: 'MCamila' },
-];
-const salarios = [
-{ id: 1, salario: 1000, idempleado: 1 },
-{ id: 2, salario: 2000, idempleado: 2 },
-];
-module.exports = { empleados, salarios };
+// const empleados = [
+// { id: 1, nombre: 'Miguel' },
+// { id: 2, nombre: 'Yenny' },
+// { id: 3, nombre: 'MCamila' },
+// ];
+// const salarios = [
+// { id: 1, salario: 1000, idempleado: 1 },
+// { id: 2, salario: 2000, idempleado: 2 },
+// ];
+// //version1
+// const { empleados, salarios } = require('./datos');
+// const obtenerEmpleado = (id, callback) => {
+// setTimeout(() => {
+// const empleado = empleados.find((e) => e.id === id);
+// if (!empleado) {
+// callback(new Error(`El empleado con id ${id} no existe`), null);
+// return;
+// }
+// callback(null, empleado);
+// }, 500);
+// };
+// const obtenerSalario = (empleado, callback) => {
+// setTimeout(() => {
+// const registro = salarios.find((s) => s.idempleado === empleado.id);
+// if (!registro) {
+
+// callback(new Error(`El empleado ${empleado.nombre} no tiene salario`), null);
+// return;
+// }
+// callback(null, registro.salario);
+// }, 500);
+// };
+// obtenerEmpleado(1, (err, empleado) => {
+// if (err) return console.log(err.message);
+// obtenerSalario(empleado, (err, salario) => {
+// if (err) return console.log(err.message);
+// console.log(`El empleado ${empleado.nombre} gana ${salario} dólares`);
+// });
+// });
+
+
+//Version 2
+// import { empleados, salarios } from './datos';
+// const obtenerEmpleado = (id, callback) => {
+// setTimeout(() => {
+// const empleado = empleados.find((e) => e.id === id);
+// if (!empleado) {
+// callback(new Error(`El empleado con id ${id} no existe`), null);
+// return;
+// }
+// callback(null, empleado);
+// }, 500);
+// };
+// const obtenerSalario = (empleado, callback) => {
+// setTimeout(() => {
+// const registro = salarios.find((s) => s.idempleado === empleado.id);
+// if (!registro) {
+
+// callback(new Error(`El empleado ${empleado.nombre} no tiene salario`), null);
+// return;
+// }
+// callback(null, registro.salario);
+// }, 500);
+// };
+// obtenerEmpleado(1, (err, empleado) => {
+// if (err) return console.log(err.message);
+// obtenerSalario(empleado, (err, salario) => {
+// if (err) return console.log(err.message);
+// console.log(`El empleado ${empleado.nombre} gana ${salario} dólares`);
+// });
+// });
 
 
 
-const { empleados, salarios } = require('./datos');
-const obtenerEmpleado = (id, callback) => {
-setTimeout(() => {
-const empleado = empleados.find((e) => e.id === id);
-if (!empleado) {
-callback(new Error(`El empleado con id ${id} no existe`), null);
-return;
-}
-callback(null, empleado);
-}, 500);
+
+
+// const mostrarInformacion = async (id) => {
+// try {
+// const empleado = await obtenerEmpleado(id);
+// const salario = await obtenerSalario(empleado);
+
+// console.log(`El empleado ${empleado.nombre} gana ${salario} dólares`);
+// } catch (err) {
+// console.log(err.message);
+// }
+// };
+// mostrarInformacion(1); // gana 1000
+// mostrarInformacion(3); // no tiene salario
+// mostrarInformacion(4); // no existe
+
+
+
+
+
+
+//Ejercicios
+
+function saludarDespuesDe(nombre, callback) {
+// Tu código aquí
+    setTimeout (() => {
+        callback(nombre)
+    }, 2000);
 };
-const obtenerSalario = (empleado, callback) => {
-setTimeout(() => {
-const registro = salarios.find((s) => s.idempleado === empleado.id);
-if (!registro) {
 
-callback(new Error(`El empleado ${empleado.nombre} no tiene salario`), null);
-return;
+function mostrarSaludo(nombre) {
+console.log(`¡Hola, ${nombre}! ¿Cómo estás?`);
 }
-callback(null, registro.salario);
-}, 500);
+saludarDespuesDe('Ana', mostrarSaludo);
+console.log('Esto se imprime primero');
+
+function saludar(segundos, callback){
+    setTimeout(() =>{
+        if (segundos < 0){
+            callback(new Error('Los segundos no pueden ser negativos'))
+            return;
+        };
+    callback(null, nombre);
+    });
 };
-obtenerEmpleado(1, (err, empleado) => {
-if (err) return console.log(err.message);
-obtenerSalario(empleado, (err, salario) => {
-if (err) return console.log(err.message);
-console.log(`El empleado ${empleado.nombre} gana ${salario} dólares`);
-});
-});
+

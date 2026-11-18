@@ -22,4 +22,12 @@ deberían ser asíncronas y explica por qué.
 # Parte 4:
 1. Porque retoma Promise, no texto.
 2. 
-- Secuencia
+- Secuencia: perfil de usuario, ciudad, clima.
+- Paralelo: noticias del dia.
+
+# Caso de estudio.
+1. En la versión 3 los mensajes aparecen prácticamente al mismo tiempo y no esperan el uno al otro porque se invocaron de forma concurrente sin usar la palabra clave await entre ellos, haciendo que cada llamada inicie su temporizador de forma independiente sin bloquear la ejecución.
+
+2. Para que se consulten en orden estricto uno después del otro, se debe utilizar un ciclo for...of sobre un arreglo de IDs dentro de una función asíncrona, anteponiendo await a cada llamada para detener temporalmente el ciclo hasta que la promesa anterior se resuelva por completo.
+
+3. Agregar la tabla de cargos fue mucho más fácil en la Versión 3 con async/await, ya que permitió escribir las llamadas de manera completamente lineal guardando cada resultado en constantes independientes, evitando la pirámide de callbacks de la primera versión y la engorrosa necesidad de usar variables temporales externas para transportar datos entre los .then() de la segunda.
