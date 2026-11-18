@@ -13,25 +13,6 @@
 // console.log('Esto se imprime primero');
 
 
-
-// function saludar(segundos, callback) {
-//     setTimeout(() => {
-//         if (segundos < 0) {
-//             callback(new Error('Los segundos no pueden ser negativos'))
-//             return;
-//         };
-        
-//     },   2000);
-// };
-
-// function mostrarSaludo(nombre) {
-//     console.log(`¡Hola, ${nombre}! ¿Cómo estás?`);
-// }
-// saludar('Ana', mostrarSaludo);
-// console.log('Esto se imprime primero');
-
-
-// --- RETO: Tiempo configurable y convención error-first ---
 function saludarConReto(nombre, segundos, callback) {
   setTimeout(() => {
     if (segundos < 0) {
