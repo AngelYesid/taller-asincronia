@@ -14,18 +14,35 @@
 
 
 
-function saludar(segundos, callback) {
-    setTimeout(() => {
-        if (segundos < 0) {
-            callback(new Error('Los segundos no pueden ser negativos'))
-            return;
-        };
+// function saludar(segundos, callback) {
+//     setTimeout(() => {
+//         if (segundos < 0) {
+//             callback(new Error('Los segundos no pueden ser negativos'))
+//             return;
+//         };
         
-    },   );
-};
+//     },   2000);
+// };
 
-function mostrarSaludo(nombre) {
-    console.log(`¡Hola, ${nombre}! ¿Cómo estás?`);
+// function mostrarSaludo(nombre) {
+//     console.log(`¡Hola, ${nombre}! ¿Cómo estás?`);
+// }
+// saludar('Ana', mostrarSaludo);
+// console.log('Esto se imprime primero');
+
+
+// --- RETO: Tiempo configurable y convención error-first ---
+function saludarConReto(nombre, segundos, callback) {
+  setTimeout(() => {
+    if (segundos < 0) {
+      callback(new Error('Los segundos no pueden ser negativos'), null);
+      return;
+    }
+    callback(null, nombre);
+  }, Math.max(0, segundos) * 2000);
 }
-saludar('Ana', mostrarSaludo);
-console.log('Esto se imprime primero');
+
+saludarConReto('Ana', -2, (err, nombre) => {
+  if (err) return console.error('Error:', err.message);
+  console.log(`¡Hola, ${nombre}! ¿Cómo estás?`);
+});
